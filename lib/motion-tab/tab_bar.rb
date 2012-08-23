@@ -24,7 +24,7 @@ module MotionTab
       return tabBarController
     end
 
-    def tabBarItem(icon, tag = 0)
+    def tabBarIcon(icon, tag = 0)
       return UITabBarItem.alloc.initWithTabBarSystemItem(icon, tag: tag)
     end
   end

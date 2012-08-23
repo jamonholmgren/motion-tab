@@ -1,9 +1,6 @@
 module MotionTab
   module TabBar
     def createTabBarControllerFromData(data)
-      main_view = MainViewController.alloc.initWithNibName(nil, bundle: nil)
-      settings_view = SettingsViewController.alloc.initWithNibName(nil, bundle: nil)
-      
       mt_tab_controllers = []
 
       data.each do |tab|

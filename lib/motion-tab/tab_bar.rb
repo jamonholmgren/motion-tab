@@ -1,31 +1,33 @@
 module MotionTab
   class TabBar
-    def createTabBarControllerFromData(data)
-      mt_tab_controllers = []
+    class << self
+      def createTabBarControllerFromData(data)
+        mt_tab_controllers = []
 
-      data.each do |tab|
-        tab[:badgeNumber] = 0 unless tab[:badgeNumber]
-        
-        viewController = tab[:viewController].alloc.init
-        viewController.tabBarItem = tabBarIcon(tab[:systemIcon], tab[:badgeNumber]) if tab[:systemIcon]
-        
-        if tab[:navigationController]
-          controller = UINavigationController.alloc.initWithRootViewController(viewController)
-        else
-          controller = viewController
+        data.each do |tab|
+          tab[:badgeNumber] = 0 unless tab[:badgeNumber]
+          
+          viewController = tab[:viewController].alloc.init
+          viewController.tabBarItem = tabBarIcon(tab[:systemIcon], tab[:badgeNumber]) if tab[:systemIcon]
+          
+          if tab[:navigationController]
+            controller = UINavigationController.alloc.initWithRootViewController(viewController)
+          else
+            controller = viewController
+          end
+
+          mt_tab_controllers << controller
         end
 
-        mt_tab_controllers << controller
+        tabBarController = UITabBarController.alloc.init
+        tabBarController.viewControllers = mt_tab_controllers
+
+        return tabBarController
       end
 
-      tabBarController = UITabBarController.alloc.init
-      tabBarController.viewControllers = mt_tab_controllers
-
-      return tabBarController
-    end
-
-    def tabBarIcon(icon, tag = 0)
-      return UITabBarItem.alloc.initWithTabBarSystemItem(icon, tag: tag)
+      def tabBarIcon(icon, tag = 0)
+        return UITabBarItem.alloc.initWithTabBarSystemItem(icon, tag: tag)
+      end
     end
   end
 end

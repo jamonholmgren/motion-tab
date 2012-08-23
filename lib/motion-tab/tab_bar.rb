@@ -1,5 +1,5 @@
 module MotionTab
-  module TabBar
+  class TabBar
     def createTabBarControllerFromData(data)
       mt_tab_controllers = []
 

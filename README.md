@@ -1,4 +1,4 @@
-# Motion::Tab
+# MotionTab
 
 Easily create a UITabBar in a RubyMotion app.
 
@@ -46,6 +46,18 @@ def application(application, didFinishLaunchingWithOptions:launchOptions)
   @window.makeKeyAndVisible
 end
 ```
+
+### Tab Options
+**systemIcon:** You can **not** customize the title if you use a system icon. You can find all of them here: http://developer.apple.com/library/ios/#documentation/userexperience/conceptual/mobilehig/UIElementGuidelines/UIElementGuidelines.html#pageNavigationLinks_bottom
+
+**icon:** Uses an image found in /resources.
+
+**title:** Custom title (only used if also using a custom icon). NOTE: setting self.title in a ViewController will override this value when you switch to that tab.
+
+**navigationController:** Boolean. If true, wraps **viewController** in a UINavigationController.
+
+**viewController:** The UIViewController class you want to load into the tab. For now you can't pass in an instantiated viewController (but that's coming soon)
+
 
 ## Contributing
 

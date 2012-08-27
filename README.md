@@ -43,7 +43,8 @@ def application(application, didFinishLaunchingWithOptions:launchOptions)
   ]
 
   tabBarController = MotionTab::TabBar.createTabBarControllerFromData(tabs)
-  MotionTab::TabBar.select(tabBarController, "Settings")
+  MotionTab::TabBar.select(tabBarController, title: "Settings")
+  # MotionTab::TabBar.select(tabBarController, tag: 0) # Selects first tab
 
   @window.rootViewController = tabBarController
   @window.makeKeyAndVisible

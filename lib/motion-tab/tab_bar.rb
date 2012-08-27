@@ -16,7 +16,11 @@ module MotionTab
             controller = viewController
           end
 
-          controller.tabBarItem.title = tab[:title] if tab[:title]
+          if tab[:title]
+            controller.tabBarItem.title = tab[:title]
+          else
+            controller.tabBarItem.title = controller.title
+          end
 
           mt_tab_controllers << controller
         end

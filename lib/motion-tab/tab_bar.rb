@@ -14,7 +14,7 @@ module MotionTab
 
       def tabBarIconCustom(title, imageName, tag = 0)
         iconImage = UIImage.imageNamed(imageName)
-        return UITabBarItem.alloc.initWithTitle(title, image:iconImage, tag:tag];
+        return UITabBarItem.alloc.initWithTitle(title, image:iconImage, tag:tag)
       end
 
       def tabControllersFromData(data)

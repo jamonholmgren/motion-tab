@@ -8,7 +8,8 @@ module MotionTab
           tab[:badgeNumber] = 0 unless tab[:badgeNumber]
           
           viewController = tab[:viewController].alloc.init
-          viewController.tabBarItem = tabBarIcon(tab[:systemIcon], tab[:badgeNumber]) if tab[:systemIcon]
+          viewController.tabBarItem = tabBarIcon(tab[:systemIcon], tab[:tag]) if tab[:systemIcon]
+          viewController.tabBarItem.badgeValue = tab[:badgeNumber].to_i.to_s if tab[:badgeNumber] && tab[:badgeNumber].to_i > 0
           
           if tab[:navigationController]
             controller = UINavigationController.alloc.initWithRootViewController(viewController)

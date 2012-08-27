@@ -5,14 +5,16 @@ module MotionTab
         tabBarController = UITabBarController.alloc.init
         tabBarController.viewControllers = self.tabControllersFromData(data)
 
+        tabBar.setSelectedItem(self.selectedTag(data)) if self.selectedTag(data)
+
         return tabBarController
       end
 
-      def tabBarIcon(icon, tag = 0)
+      def tabBarIcon(icon, tag = "")
         return UITabBarItem.alloc.initWithTabBarSystemItem(icon, tag: tag)
       end
 
-      def tabBarIconCustom(title, imageName, tag = 0)
+      def tabBarIconCustom(title, imageName, tag = "")
         iconImage = UIImage.imageNamed(imageName)
         return UITabBarItem.alloc.initWithTitle(title, image:iconImage, tag:tag)
       end
@@ -25,6 +27,13 @@ module MotionTab
         end
 
         return mt_tab_controllers
+      end
+
+      def selectedTag(data)
+        data.each do |tab|
+          return tab[:tag] if tab[:selected]
+        end
+        return nil
       end
 
       def controllerFromTabData(tab)

@@ -74,7 +74,7 @@ module MotionTab
       def select(tabBarController, title)
         tabBarController.viewControllers.each do |vc|
           if vc.tabBarItem.title == title
-            tabBarController.selectedIndex = vc.tag
+            tabBarController.selectedIndex = vc.tabBarItem.tag
           end
         end
       end

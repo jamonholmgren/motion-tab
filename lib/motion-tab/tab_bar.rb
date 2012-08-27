@@ -19,7 +19,7 @@ module MotionTab
           if tab[:title]
             controller.tabBarItem.title = tab[:title]
           else
-            controller.tabBarItem.title = controller.title
+            controller.tabBarItem.title = viewController.title
           end
 
           mt_tab_controllers << controller

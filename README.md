@@ -28,17 +28,21 @@ def application(application, didFinishLaunchingWithOptions:launchOptions)
     {
       systemIcon: UITabBarSystemItemContacts,
       navigationController: true,
-      viewController: ContactsViewController
+      viewController: ContactsViewController,
+      tag: :contacts
     }, {
       title: "Custom",
       icon: "custom.png",
       navigationController: false,
-      viewController: CustomViewController
+      viewController: CustomViewController,
+      tag: :custom,
+      selected: true
     }, {
       title: "Settings",
       icon: "settings.png",
       navigationController: true,
-      viewController: SettingsViewController
+      viewController: SettingsViewController,
+      tag: :settings
     }
   ]
 
@@ -58,6 +62,9 @@ end
 
 **viewController:** The UIViewController class you want to load into the tab. For now you can't pass in an instantiated viewController (but that's coming soon)
 
+**tag:** Identifier for use when selecting tabs.
+
+**selected:** Boolean. When set to true, pre-selects this tab on load
 
 ## Contributing
 

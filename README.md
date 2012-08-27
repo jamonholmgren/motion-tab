@@ -46,7 +46,10 @@ def application(application, didFinishLaunchingWithOptions:launchOptions)
     }
   ]
 
-  @window.rootViewController = MotionTab::TabBar.createTabBarControllerFromData(tabs)
+  tabBarController = MotionTab::TabBar.createTabBarControllerFromData(tabs)
+  MotionTab::TabBar.select(tabBarController, "Settings")
+
+  @window.rootViewController = tabBarController
   @window.makeKeyAndVisible
 end
 ```
@@ -62,9 +65,6 @@ end
 
 **viewController:** The UIViewController class you want to load into the tab. For now you can't pass in an instantiated viewController (but that's coming soon)
 
-**tag:** Identifier for use when selecting tabs.
-
-**selected:** Boolean. When set to true, pre-selects this tab on load
 
 ## Contributing
 

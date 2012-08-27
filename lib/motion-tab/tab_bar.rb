@@ -2,19 +2,30 @@ module MotionTab
   class TabBar
     class << self
       def createTabBarControllerFromData(data)
+        data = self.setTags(data)
+
         tabBarController = UITabBarController.alloc.init
         tabBarController.viewControllers = self.tabControllersFromData(data)
-
-        tabBar.setSelectedItem(self.selectedTag(data)) if self.selectedTag(data)
 
         return tabBarController
       end
 
-      def tabBarIcon(icon, tag = "")
+      def setTags(data)
+        tagNumber = 0
+        
+        data.each do |d|
+          data[:tag] = tagNumber
+          tagNumber += 1
+        end
+
+        return data
+      end
+
+      def tabBarIcon(icon, tag)
         return UITabBarItem.alloc.initWithTabBarSystemItem(icon, tag: tag)
       end
 
-      def tabBarIconCustom(title, imageName, tag = "")
+      def tabBarIconCustom(title, imageName, tag)
         iconImage = UIImage.imageNamed(imageName)
         return UITabBarItem.alloc.initWithTitle(title, image:iconImage, tag:tag)
       end
@@ -29,18 +40,12 @@ module MotionTab
         return mt_tab_controllers
       end
 
-      def selectedTag(data)
-        data.each do |tab|
-          return tab[:tag] if tab[:selected]
-        end
-        return nil
-      end
-
       def controllerFromTabData(tab)
         tab[:badgeNumber] = 0 unless tab[:badgeNumber]
         tab[:tag] = 0 unless tab[:tag]
         
-        viewController = tab[:viewController].alloc.init
+        viewController = tab[:viewController]
+        viewController = tab[:viewController].alloc.init if tab[:viewController].respond_to?(:alloc)
         
         if tab[:navigationController]
           controller = UINavigationController.alloc.initWithRootViewController(viewController)
@@ -59,11 +64,19 @@ module MotionTab
         title = tab[:title] if tab[:title]
 
         tabBarItem = tabBarIcon(tab[:systemIcon], tab[:tag]) if tab[:systemIcon]
-        tabBarItem = tabBarIconCustom(title, tab[:icon]) if tab[:icon]
+        tabBarItem = tabBarIconCustom(title, tab[:icon], tab[:tag]) if tab[:icon]
         
         tabBarItem.badgeValue = tab[:badgeNumber].to_s unless tab[:badgeNumber].nil? || tab[:badgeNumber] <= 0
         
         return tabBarItem
+      end
+
+      def select(tabBarController, title)
+        tabBarController.viewControllers.each do |vc|
+          if vc.tabBarItem.title == title
+            tabBarController.selectedIndex = vc.tag
+          end
+        end
       end
     end
   end

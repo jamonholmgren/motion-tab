@@ -6,10 +6,11 @@ module MotionTab
 
         data.each do |tab|
           tab[:badgeNumber] = 0 unless tab[:badgeNumber]
+          tab[:tag] = 0 unless tab[:tag]
           
           viewController = tab[:viewController].alloc.init
           viewController.tabBarItem = tabBarIcon(tab[:systemIcon], tab[:tag]) if tab[:systemIcon]
-          viewController.tabBarItem.badgeValue = tab[:badgeNumber].to_i.to_s if tab[:badgeNumber] && tab[:badgeNumber].to_i > 0
+          viewController.tabBarItem.badgeValue = tab[:badgeNumber].to_s unless tab[:badgeNumber].nil? || tab[:badgeNumber] <= 0
           
           if tab[:navigationController]
             controller = UINavigationController.alloc.initWithRootViewController(viewController)

@@ -1,6 +1,6 @@
 # Motion::Tab
 
-TODO: Write a gem description
+Easily create a UITabBar in a RubyMotion app.
 
 ## Installation
 
@@ -18,7 +18,34 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Basic usage (more documentation is forthcoming):
+
+```ruby
+def application(application, didFinishLaunchingWithOptions:launchOptions)
+  @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+
+  tabs = [
+    {
+      systemIcon: UITabBarSystemItemContacts,
+      navigationController: true,
+      viewController: ContactsViewController
+    }, {
+      title: "Custom",
+      icon: "custom.png",
+      navigationController: false,
+      viewController: CustomViewController
+    }, {
+      title: "Settings",
+      icon: "settings.png",
+      navigationController: true,
+      viewController: SettingsViewController
+    }
+  ]
+
+  @window.rootViewController = MotionTab::TabBar.createTabBarControllerFromData(tabs)
+  @window.makeKeyAndVisible
+end
+```
 
 ## Contributing
 

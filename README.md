@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-Basic usage (more documentation is forthcoming):
+Basic usage (more documentation is forthcoming). In app/app_delegate.rb:
 
 ```ruby
 def application(application, didFinishLaunchingWithOptions:launchOptions)

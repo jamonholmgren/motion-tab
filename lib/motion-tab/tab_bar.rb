@@ -14,7 +14,7 @@ module MotionTab
         tagNumber = 0
         
         data.each do |d|
-          data[:tag] = tagNumber
+          d[:tag] = tagNumber
           tagNumber += 1
         end
 

@@ -1,5 +1,7 @@
 # MotionTab
 
+**NOTE: MotionTab is deprecated and has been merged into the ProMotion project.
+
 Easily create a UITabBar in a RubyMotion app.
 
 ## Installation
